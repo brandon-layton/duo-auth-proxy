@@ -1,0 +1,16 @@
+version: "3"
+services:
+  duoauthproxy:
+    container_name: "duoauthproxy"
+    build: .
+    image: duoauthproxy
+    networks:
+      - duo
+    ports:
+      - "1812:1812/udp"
+    volumes:
+      - ./conf/authproxy.cfg:/opt/duoauthproxy/conf/authproxy.cfg
+    restart: unless-stopped
+
+networks:
+  duo:
